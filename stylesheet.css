@@ -44,6 +44,12 @@ h3{
     margin-right: 15px;
     margin-left: 2px;
 }
+footer {
+    background-color:#2E0249;
+    color: #fff;
+    padding: 25px;
+    text-align: center;
+}
 
 #error-message {
     display: block;
