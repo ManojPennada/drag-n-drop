@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Drag & Drop</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="left">
+            <h3 align="center">Not Selected for interview</h3>
+            <div class="list" draggable="true"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">Sk Prakalya</div>
+            <div class="list" draggable="true"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">Anushka</div>
+            <div class="list" draggable="true"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">Lasya</div>
+            <div class="list" draggable="true"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png">Kavya</div>
+
+        </div>
+        <div id="right">
+            <h3 align="center">Selected for interview</h3>
+        </div>
+        <br>
+        <button onclick="refreshPage()">Clear All</button>
+    </div>
+    <div id="error-message">
+        <h1>Error: Please open this webpage on a desktop device.</h1>
+    </div>
+</body>
+<script>
+
+    let lists = document.getElementsByClassName("list");
+    let rightBox = document.getElementById("right");
+    let leftBox = document.getElementById("left");
+    for (list of lists) {
+        list.addEventListener("dragstart", function (e) {
+            let selected = e.target;
+            rightBox.addEventListener("dragover", function (e) {
+                e.preventDefault();
+            })
+            rightBox.addEventListener("drop", function (e) {
+                rightBox.appendChild(selected);
+                selected = null;
+            })
+            leftBox.addEventListener("dragover", function (e) {
+                e.preventDefault();
+            })
+            leftBox.addEventListener("drop", function (e) {
+                leftBox.appendChild(selected);
+                selected = null;
+            })
+        })
+    }
+    function refreshPage() {
+        location.reload();
+    }
+    window.onload = function () {
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.getElementsByClassName("container")[0].style.display = "none";
+            document.getElementById("error-message").style.display = "block";
+        }
+    };
+
+
+</script>
+
+</html>
